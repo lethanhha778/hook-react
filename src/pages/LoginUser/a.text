@@ -1,0 +1,22 @@
+next js
+em có biết gì về next js ko?. có
+đó là 1 famework dựa trên react js
+tại sao ko dùng react js mà dung next js?
+
+//1 next js mạnh về hỗ trợ seo web => cơ chế sever side rendering => tất cả các yêu cầu đc xử lý client ở sever  và render ra file html 
+// 2 react js thì nó client side , id= 'root' , xử lý  nó mới render giao diện, bot của gg và sanfari ko đọc đc các thẻ meta trong file
+
+// next js cũng hổ trợ client side nên việc loding và tải dữ liệu rất nhanh so với các fwork khác
+
+// dùng next js hầu như ko thấy loading khi chuyển trang
+// cơ chế router giống react-router-dom v6(mặc định nextjs có router)
+
+
+
+tại vì sao đặt tên cpn là jsx  và tại sao là js
+js ko render ra giao diện
+jsx render ra giao diện
+
+
+// react là thư viện  => lớn là thư viện , nhỏ là famework 
+// next js là famework  

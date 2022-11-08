@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 import { BrowserRouter, Route, Router, Switch } from 'react-router-dom'
 import Header from './component/Header/Header'
 import About from './pages/About/About'
@@ -21,6 +22,8 @@ import { HomeTemplate } from './Template/HomeTemplete'
 // hỗ trợ sử dụng history của Router cho các file ko phải component
 import { createBrowserHistory } from 'history'
 import LoginUser from './pages/LoginUser/LoginUser'
+import AntdDemo from './pages/AntdDemo/AntdDemo'
+import { AdminTemplate } from './Template/Admin'
 
 export const history = createBrowserHistory()
 
@@ -77,7 +80,7 @@ export default function App() {
                 <HomeTemplate exact path="/detail/:maPhim" component={Detail}></HomeTemplate>
                 <HomeTemplate exact path="/profile" component={Profile}></HomeTemplate>
                 <HomeTemplate exact path="/loginUser" component={LoginUser}></HomeTemplate>
-
+                <AdminTemplate exact path="/antd" component={AntdDemo}></AdminTemplate>
 
                 {/* khi ko có trang cụ thể thì vào home */}
                 {/* <Route exact path="/" component={Home} /> */}

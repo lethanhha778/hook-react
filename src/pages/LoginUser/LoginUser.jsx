@@ -4,34 +4,23 @@ import { useFormik } from 'formik';
 import { GP_ID } from '../../util/setting';
 import { dangNhapAction } from '../../redux/action/qLNDAction';
 import { useDispatch } from 'react-redux';
+import { useForm } from './useForm';
+
+
 
 export default function LoginUser() {
-    let dispatch = useDispatch()
-    const formik = useFormik({
-        // giá trị khởi tạo( data cần lưu)
-        initialValues: {
-            taiKhoan: '',
-            matKhau: '',
-        },
-    
-        onSubmit: values => {
-            console.log(values)
-            // gọi dispatch đưa dữ liệu cho dangKyAction
-            let acction = dangNhapAction(values)
-            // // giúp gọi hàm call API
-            dispatch(acction)
-        },
-    });
+    const { formik } = useForm()
+    const { handleChange, handleSubmit } = formik
     return (
-        <div className='loginForm w-25'>
-            <form className="py-5" onSubmit={formik.handleSubmit} >
+        <div className='loginForm w-25 px-5'>
+            <form className="py-5" onSubmit={handleSubmit} >
                 <div className="form-group">
                     <input type="text" className="form-control" name='taiKhoan' placeholder="Enter Username"
-                     onChange={formik.handleChange}  />
+                        onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <input type="password" className="form-control" name='matKhau' placeholder="Enter Pass" 
-                     onChange={formik.handleChange} />
+                    <input type="password" className="form-control" name='matKhau' placeholder="Enter Pass"
+                        onChange={handleChange} />
                 </div>
                 <button className='btn btn-success'>Login</button>
             </form>

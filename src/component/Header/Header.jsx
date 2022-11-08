@@ -1,7 +1,19 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 export default function Header() {
+
+  let {uLogin} = useSelector(state => state.QLNDReducer)
+  let renderName = () => {
+    if(uLogin !== null){
+        // đã đăng nhập
+        return  <NavLink className="nav-link" to="/profile">Heloo {uLogin.hoTen}</NavLink>
+    }else{
+        // chưa
+     return  <NavLink className="nav-link" to="/loginUser">Login User</NavLink>
+    }
+  }
     return (
         <div className='container-fluid'>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -17,13 +29,13 @@ export default function Header() {
                         <li className="nav-item">    
                             <NavLink className="nav-link" to="/about">About</NavLink>
                         </li>
-                        <li className="nav-item">    
+                        {/* <li className="nav-item">    
                             <NavLink className="nav-link" to="/login">Login</NavLink>
-                        </li>
+                        </li> */}
                         <li className="nav-item">    
                             <NavLink className="nav-link" to="/register">Register</NavLink>
                         </li>
-                        <li className="nav-item">    
+                        {/* <li className="nav-item">    
                             <NavLink className="nav-link" to="/counter">Counter</NavLink>
                         </li>
                         <li className="nav-item">    
@@ -34,8 +46,8 @@ export default function Header() {
                         </li>
                         <li className="nav-item">    
                             <NavLink className="nav-link" to="/rcc">API RCC</NavLink>
-                        </li>
-                        <li className="nav-item">    
+                        </li> */}
+                        {/* <li className="nav-item">    
                             <NavLink className="nav-link" to="/use-callback">Use CallBack</NavLink>
                         </li>
                         <li className="nav-item">    
@@ -43,7 +55,7 @@ export default function Header() {
                         </li>
                         <li className="nav-item">    
                             <NavLink className="nav-link" to="/use-ref">Use Ref</NavLink>
-                        </li>
+                        </li> */}
                         <li className="nav-item">    
                             <NavLink className="nav-link" to="/redux-demo">Redux</NavLink>
                         </li>
@@ -53,10 +65,13 @@ export default function Header() {
                         <li className="nav-item">    
                             <NavLink className="nav-link" to="/detail/phim123">Detail</NavLink>
                         </li>
+                   
+                        <li className="nav-item">
+                           {renderName()}
+                        </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        
                     </form>
                 </div>
             </nav>

@@ -1,14 +1,12 @@
 import axios from "axios"
-import { TOKEN, URL_API } from "../../util/setting"
+import { ACCESS_TOKEN, TOKEN, URL_API, USER_LOGIN } from "../../util/setting"
 
 import { history } from "../../App"
+import { LOGIN } from "../types/qLNDType"
 
 // action loại 2: function
 // cần truyền tham số => trả về 1 hàm chưa được gọi
 // dispatch cần truyền vào hàm chưa gọi
-
-
-
 
 
 export const dangKyAction = (userInfo) => {
@@ -21,7 +19,7 @@ export const dangKyAction = (userInfo) => {
             url: `${URL_API}/QuanLyNguoiDung/DangKy`,
             data: userInfo,
             headers: {
-                TokenCybersoft: TOKEN
+                'TokenCybersoft': TOKEN
             }
         })
         promise.then((result) => {
@@ -34,7 +32,7 @@ export const dangKyAction = (userInfo) => {
             history.push('./login')
         })
         promise.catch((error) => {
-            // optional chaining (?.)
+            //! optional chaining (?.)
             console.log(error.response.data)
         })
     }
@@ -49,13 +47,24 @@ export const dangNhapAction = (userInfo) => {
             url: `${URL_API}/QuanLyNguoiDung/DangNhap`,
             data: userInfo,
             headers: {
-                TokenCybersoft: TOKEN
+                'TokenCybersoft': TOKEN
             }
         })
         promise.then((result) => {
             console.log(result.data);
-            alert("Thành Công Rồi")
+            // lưu xún local storage
+            localStorage.setItem(ACCESS_TOKEN, result.data.content.accessToken)
+            
+            let userInfo = JSON.stringify(result.data.content)
+            localStorage.setItem(USER_LOGIN, userInfo)
 
+            let action = {
+                type:LOGIN,
+                uLogin:userInfo
+            }
+            //dispatch2 đẩy dữ liệu về reducer
+            dispatch2(action)
+            // đn đc đẩy về home
             history.push('./home')
         })
         promise.catch((error) => {
@@ -63,5 +72,6 @@ export const dangNhapAction = (userInfo) => {
             console.log(error.response.data)
         })
     }
-
 }
+// xóa local bằng remo Local 
+// đẩy disptah null lên reducer
